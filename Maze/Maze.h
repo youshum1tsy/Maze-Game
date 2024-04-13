@@ -8,6 +8,7 @@ public:
 	Cell* GetRandomCell();
 	int GetNumberCells();
 
+
 	Cell** cells;
 private:
 	int columns = 4;
