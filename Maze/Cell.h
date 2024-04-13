@@ -1,0 +1,32 @@
+#pragma once
+#include "SFML/Graphics.hpp"
+#include <vector>
+#include <map>
+
+class Cell{
+public:
+	Cell();
+	Cell(int x, int y);
+
+	void AddNeighbour(int direction, int x, int y);
+	std::map<int, int[2]> GetAllNeighbours();
+	
+	std::vector<std::vector<int>> GetLinks();
+	size_t GetNumberLinks();
+	void link(Cell& cell);
+
+	int GetX();
+	int GetY();
+
+	sf::Sprite& GetSprite();
+	std::vector<std::vector<int>> links;
+
+private:
+	std::vector<int> directions;
+	std::map<int, int[2]> neighboursCords;
+	int x;
+	int y;
+
+	sf::Sprite sprite;
+};
+
