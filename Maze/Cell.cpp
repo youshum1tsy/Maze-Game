@@ -22,8 +22,13 @@ void Cell::AddNeighbour(int direction, int x, int y) {
 }
 
 void Cell::link(Cell& cell) {
-	this->links.push_back(cell);
-	cell.links.push_back(*this);
+	links.push_back(std::vector<int>());
+	this->links[links.size() - 1].push_back(cell.GetX());
+	this->links[links.size() - 1].push_back(cell.GetY());
+
+	cell.links.push_back(std::vector<int>());
+	cell.links[cell.links.size() - 1].push_back(this->GetX());
+	cell.links[cell.links.size() - 1].push_back(this->GetY());
 }
 
 size_t Cell::GetNumberLinks()

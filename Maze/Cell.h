@@ -20,10 +20,10 @@ public:
 	int GetX();
 	int GetY();
 
+private:
 	std::vector<int> directions;
 	std::map<int, int[2]> neighboursCords;
-	std::vector<Cell> links;
-private:
+	std::vector<std::vector<int>> links;
 	int x;
 	int y;
 };

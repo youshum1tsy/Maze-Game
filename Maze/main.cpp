@@ -1,10 +1,11 @@
 #include <iostream>
+#include <SFML/Graphics.hpp>
 #include "Maze.h"
 #include "Cell.h"
 
 int main() {
-    int columns = 30;
-    int rows = 30;
+    int columns = 50;
+    int rows = 50;
     Maze Map(columns, rows);
 
     Cell* currentCell = Map.GetRandomCell();
@@ -39,7 +40,6 @@ int main() {
             currentCell->link(Map.cells[neighbourX][neighbourY]);
             currentCell = &Map.cells[neighbourX][neighbourY];
             std::vector<std::vector<int>>().swap(unvisitedNeighbours);
-            //unvisitedNeighbours.clear();
         }
         else {
             currentCell = NULL;
@@ -70,7 +70,6 @@ int main() {
 
                             currentCell->link(Map.cells[neighbourX][neighbourY]);
                             std::vector<std::vector<int>>().swap(visitedNeighbours);
-                            //visitedNeighbours.clear();
                             break;
                         }
                     }
@@ -84,7 +83,18 @@ int main() {
         std::cout << std::endl;
         for (size_t x = 0; x < columns; x++)
         {
-            std::cout << Map.cells[x][y].links.size();
+            std::cout << Map.cells[x][y].GetNumberLinks();
+        }
+    }
+
+    
+    sf::RenderWindow window(sf::VideoMode(1920, 1080), "SFML works!");
+    while (window.isOpen()) {
+        sf::Event event;
+        while (window.pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed)
+                window.close();
         }
     }
 
