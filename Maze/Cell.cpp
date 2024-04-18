@@ -54,3 +54,59 @@ sf::Sprite& Cell::GetSprite()
 {
 	return sprite;
 }
+
+void Cell::BorderUpLeft(int cellTextureWight, int cellTextureHeight, int direction) {
+	sf::RectangleShape border;
+	border.setSize(sf::Vector2f(16, 32));
+	border.setPosition(sf::Vector2f(x * cellTextureWight, y * cellTextureHeight));
+	borders.insert(std::make_pair(direction, border));
+}
+
+void Cell::BorderUpRight(int cellTextureWight, int cellTextureHeight, int direction) {
+	sf::RectangleShape border;
+	border.setSize(sf::Vector2f(16, 32));
+	border.setPosition(sf::Vector2f(x * cellTextureWight + (cellTextureWight - 16), y * cellTextureHeight));
+	borders.insert(std::make_pair(direction, border));
+}
+
+void Cell::BorderUp(int cellTextureWight, int cellTextureHeight, int direction) {
+	sf::RectangleShape border;
+	border.setSize(sf::Vector2f(96, 32));
+	border.setPosition(sf::Vector2f(x * cellTextureWight, y * cellTextureHeight));
+	borders.insert(std::make_pair(direction, border));
+}
+
+void Cell::BorderBottomLeft(int cellTextureWight, int cellTextureHeight, int direction) {
+	sf::RectangleShape border;
+	border.setSize(sf::Vector2f(16, 16));
+	border.setPosition(sf::Vector2f(x * cellTextureWight, y * cellTextureHeight + (cellTextureHeight - 16)));
+	borders.insert(std::make_pair(direction, border));
+}
+
+void Cell::BorderBottomRight(int cellTextureWight, int cellTextureHeight, int direction) {
+	sf::RectangleShape border;
+	border.setSize(sf::Vector2f(16, 16));
+	border.setPosition(sf::Vector2f(x * cellTextureWight + (cellTextureWight - 16), y * cellTextureHeight + (cellTextureHeight - 16)));
+	borders.insert(std::make_pair(direction, border));
+}
+
+void Cell::BorderBottom(int cellTextureWight, int cellTextureHeight, int direction) {
+	sf::RectangleShape border;
+	border.setSize(sf::Vector2f(96, 16));
+	border.setPosition(sf::Vector2f(x * cellTextureWight, y * cellTextureHeight + (cellTextureHeight - 16)));
+	borders.insert(std::make_pair(direction, border));
+}
+
+void Cell::BorderLeft(int cellTextureWight, int cellTextureHeight, int direction) {
+	sf::RectangleShape border;
+	border.setSize(sf::Vector2f(16, 96));
+	border.setPosition(sf::Vector2f(x * cellTextureWight, y * cellTextureHeight));
+	borders.insert(std::make_pair(direction, border));
+}
+
+void Cell::BorderRight(int cellTextureWight, int cellTextureHeight, int direction) {
+	sf::RectangleShape border;
+	border.setSize(sf::Vector2f(16, 96));
+	border.setPosition(sf::Vector2f(x * cellTextureWight + (cellTextureWight - 16), y * cellTextureHeight));
+	borders.insert(std::make_pair(direction, border));
+}

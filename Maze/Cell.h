@@ -19,13 +19,25 @@ public:
 	int GetY();
 
 	sf::Sprite& GetSprite();
+	
+	void BorderUpLeft(int cellTextureWight, int cellTextureHeight, int direction);
+	void BorderUpRight(int cellTextureWight, int cellTextureHeight, int direction);
+	void BorderUp(int cellTextureWight, int cellTextureHeight, int direction);
+	void BorderBottomLeft(int cellTextureWight, int cellTextureHeight, int direction);
+	void BorderBottomRight(int cellTextureWight, int cellTextureHeight, int direction);
+	void BorderBottom(int cellTextureWight, int cellTextureHeight, int direction);
+	void BorderLeft(int cellTextureWight, int cellTextureHeight, int direction);
+	void BorderRight(int cellTextureWight, int cellTextureHeight, int direction);
+
 	std::vector<std::vector<int>> links;
+	std::map<int ,sf::RectangleShape> borders;
 
 private:
-	std::vector<int> directions;
 	std::map<int, int[2]> neighboursCords;
+	std::vector<int> directions;
 	int x;
 	int y;
+
 
 	sf::Sprite sprite;
 };
