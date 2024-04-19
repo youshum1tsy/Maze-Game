@@ -1,6 +1,7 @@
 #include "Maze.h"
 #include <ctime>
 #include <iostream>
+#include "Constants.h"
 
 Maze::Maze(int columns, int rows) {
     this->columns = columns;
@@ -20,16 +21,16 @@ Maze::Maze(int columns, int rows) {
     for (size_t y = 0; y < rows; y++) {
         for (size_t x = 0; x < columns; x++) {
             if (x > 0) {
-                cells[x][y].AddNeighbour(CELL_LEFT, x-1, y);
+                cells[x][y].AddNeighbour(CellConstants::CELL_LEFT, x-1, y);
             }
             if (x < columns - 1) {
-                cells[x][y].AddNeighbour(CELL_RIGHT, x+1, y);
+                cells[x][y].AddNeighbour(CellConstants::CELL_RIGHT, x+1, y);
             }
             if (y > 0) {
-                cells[x][y].AddNeighbour(CELL_UP, x, y-1);
+                cells[x][y].AddNeighbour(CellConstants::CELL_UP, x, y-1);
             }
             if (y < rows - 1) {
-                cells[x][y].AddNeighbour(CELL_BOTTOM, x, y+1);
+                cells[x][y].AddNeighbour(CellConstants::CELL_BOTTOM, x, y+1);
             }
         }
     }
@@ -178,152 +179,152 @@ void Maze::Load() {
             }
 
             if (left == 1 && right == 1 && up == 1 && bottom == 1) {
-                cells[x][y].BorderUpLeft(cellTextureWight, cellTextureHeight, BORDER_UP_LEFT);
+                cells[x][y].BorderUpLeft(cellTextureWight, cellTextureHeight, BorderConstants::BORDER_UP_LEFT);
 
-                cells[x][y].BorderUpRight(cellTextureWight, cellTextureHeight, BORDER_UP_RIGHT);
+                cells[x][y].BorderUpRight(cellTextureWight, cellTextureHeight, BorderConstants::BORDER_UP_RIGHT);
                 
-                cells[x][y].BorderBottomLeft(cellTextureWight, cellTextureHeight, BORDER_BOTTOM_LEFT);
+                cells[x][y].BorderBottomLeft(cellTextureWight, cellTextureHeight, BorderConstants::BORDER_BOTTOM_LEFT);
                 
-                cells[x][y].BorderBottomRight(cellTextureWight, cellTextureHeight, BORDER_BOTTOM_RIGHT);
+                cells[x][y].BorderBottomRight(cellTextureWight, cellTextureHeight, BorderConstants::BORDER_BOTTOM_RIGHT);
 
                 xIndex = 0;
                 yIndex = 0;
             }
             else if (left == 1 && up == 1 && bottom == 1 && right == 0) {
-                cells[x][y].BorderUpLeft(cellTextureWight, cellTextureHeight, BORDER_UP_LEFT);
+                cells[x][y].BorderUpLeft(cellTextureWight, cellTextureHeight, BorderConstants::BORDER_UP_LEFT);
 
-                cells[x][y].BorderBottomLeft(cellTextureWight, cellTextureHeight, BORDER_BOTTOM_LEFT);
+                cells[x][y].BorderBottomLeft(cellTextureWight, cellTextureHeight, BorderConstants::BORDER_BOTTOM_LEFT);
 
-                cells[x][y].BorderRight(cellTextureWight, cellTextureHeight, BORDER_RIGHT);
+                cells[x][y].BorderRight(cellTextureWight, cellTextureHeight, BorderConstants::BORDER_RIGHT);
 
                 xIndex = 1;
                 yIndex = 0;
             }
             else if (left == 0 && up == 1 && bottom == 1 && right == 1) {
-                cells[x][y].BorderUpRight(cellTextureWight, cellTextureHeight, BORDER_UP_RIGHT);
+                cells[x][y].BorderUpRight(cellTextureWight, cellTextureHeight, BorderConstants::BORDER_UP_RIGHT);
 
-                cells[x][y].BorderBottomRight(cellTextureWight, cellTextureHeight, BORDER_BOTTOM_RIGHT);
+                cells[x][y].BorderBottomRight(cellTextureWight, cellTextureHeight, BorderConstants::BORDER_BOTTOM_RIGHT);
 
-                cells[x][y].BorderLeft(cellTextureWight, cellTextureHeight, BORDER_LEFT);
+                cells[x][y].BorderLeft(cellTextureWight, cellTextureHeight, BorderConstants::BORDER_LEFT);
 
                 xIndex = 2;
                 yIndex = 0;
             }
             else if (left == 0 && up == 1 && bottom == 1 && right == 0) {
-                cells[x][y].BorderLeft(cellTextureWight, cellTextureHeight, BORDER_LEFT);
+                cells[x][y].BorderLeft(cellTextureWight, cellTextureHeight, BorderConstants::BORDER_LEFT);
 
-                cells[x][y].BorderRight(cellTextureWight, cellTextureHeight, BORDER_RIGHT);
+                cells[x][y].BorderRight(cellTextureWight, cellTextureHeight, BorderConstants::BORDER_RIGHT);
 
                 xIndex = 3;
                 yIndex = 0;
             }
             else if (left == 1 && up == 1 && bottom == 0 && right == 1) {
-                cells[x][y].BorderUpRight(cellTextureWight, cellTextureHeight, BORDER_UP_RIGHT);
+                cells[x][y].BorderUpRight(cellTextureWight, cellTextureHeight, BorderConstants::BORDER_UP_RIGHT);
                 
-                cells[x][y].BorderUpLeft(cellTextureWight, cellTextureHeight, BORDER_UP_LEFT);
+                cells[x][y].BorderUpLeft(cellTextureWight, cellTextureHeight, BorderConstants::BORDER_UP_LEFT);
 
-                cells[x][y].BorderBottom(cellTextureWight, cellTextureHeight, BORDER_BOTTOM);
+                cells[x][y].BorderBottom(cellTextureWight, cellTextureHeight, BorderConstants::BORDER_BOTTOM);
 
                 xIndex = 0;
                 yIndex = 1;
             }
             else if (left == 1 && up == 1 && bottom == 0 && right == 0) {
-                cells[x][y].BorderUpLeft(cellTextureWight, cellTextureHeight, BORDER_UP_LEFT);
+                cells[x][y].BorderUpLeft(cellTextureWight, cellTextureHeight, BorderConstants::BORDER_UP_LEFT);
 
-                cells[x][y].BorderBottom(cellTextureWight, cellTextureHeight, BORDER_BOTTOM);
+                cells[x][y].BorderBottom(cellTextureWight, cellTextureHeight, BorderConstants::BORDER_BOTTOM);
 
-                cells[x][y].BorderRight(cellTextureWight, cellTextureHeight, BORDER_RIGHT);
+                cells[x][y].BorderRight(cellTextureWight, cellTextureHeight, BorderConstants::BORDER_RIGHT);
 
                 xIndex = 1;
                 yIndex = 1;
             }
             else if (left == 0 && up == 1 && bottom == 0 && right == 1) {
-                cells[x][y].BorderUpRight(cellTextureWight, cellTextureHeight, BORDER_UP_RIGHT);
+                cells[x][y].BorderUpRight(cellTextureWight, cellTextureHeight, BorderConstants::BORDER_UP_RIGHT);
 
-                cells[x][y].BorderLeft(cellTextureWight, cellTextureHeight, BORDER_LEFT);
+                cells[x][y].BorderLeft(cellTextureWight, cellTextureHeight, BorderConstants::BORDER_LEFT);
 
-                cells[x][y].BorderBottom(cellTextureWight, cellTextureHeight, BORDER_BOTTOM);
+                cells[x][y].BorderBottom(cellTextureWight, cellTextureHeight, BorderConstants::BORDER_BOTTOM);
 
                 xIndex = 2;
                 yIndex = 1;
             }
             else if (left == 0 && up == 1 && bottom == 0 && right == 0) {
-                cells[x][y].BorderRight(cellTextureWight, cellTextureHeight, BORDER_RIGHT);
+                cells[x][y].BorderRight(cellTextureWight, cellTextureHeight, BorderConstants::BORDER_RIGHT);
 
-                cells[x][y].BorderLeft(cellTextureWight, cellTextureHeight, BORDER_LEFT);
+                cells[x][y].BorderLeft(cellTextureWight, cellTextureHeight, BorderConstants::BORDER_LEFT);
 
-                cells[x][y].BorderBottom(cellTextureWight, cellTextureHeight, BORDER_BOTTOM);
+                cells[x][y].BorderBottom(cellTextureWight, cellTextureHeight, BorderConstants::BORDER_BOTTOM);
 
                 xIndex = 3;
                 yIndex = 1;
             }
             else if (left == 1 && up == 0 && bottom == 1 && right == 1) {
 
-                cells[x][y].BorderUp(cellTextureWight, cellTextureHeight, BORDER_UP);
+                cells[x][y].BorderUp(cellTextureWight, cellTextureHeight, BorderConstants::BORDER_UP);
 
-                cells[x][y].BorderBottomLeft(cellTextureWight, cellTextureHeight, BORDER_BOTTOM_LEFT);
+                cells[x][y].BorderBottomLeft(cellTextureWight, cellTextureHeight, BorderConstants::BORDER_BOTTOM_LEFT);
 
-                cells[x][y].BorderBottomRight(cellTextureWight, cellTextureHeight, BORDER_BOTTOM_RIGHT);
+                cells[x][y].BorderBottomRight(cellTextureWight, cellTextureHeight, BorderConstants::BORDER_BOTTOM_RIGHT);
 
                 xIndex = 0;
                 yIndex = 2;
             }
             else if (left == 1 && up == 0 && bottom == 1 && right == 0) {
                 
-                cells[x][y].BorderUp(cellTextureWight, cellTextureHeight, BORDER_UP);
+                cells[x][y].BorderUp(cellTextureWight, cellTextureHeight, BorderConstants::BORDER_UP);
 
-                cells[x][y].BorderBottomLeft(cellTextureWight, cellTextureHeight, BORDER_BOTTOM_LEFT);
+                cells[x][y].BorderBottomLeft(cellTextureWight, cellTextureHeight, BorderConstants::BORDER_BOTTOM_LEFT);
 
-                cells[x][y].BorderRight(cellTextureWight, cellTextureHeight, BORDER_RIGHT);
+                cells[x][y].BorderRight(cellTextureWight, cellTextureHeight, BorderConstants::BORDER_RIGHT);
 
                 xIndex = 1;
                 yIndex = 2;
             }
             else if (left == 0 && up == 0 && bottom == 1 && right == 1) {
                 
-                cells[x][y].BorderUp(cellTextureWight, cellTextureHeight, BORDER_UP);
+                cells[x][y].BorderUp(cellTextureWight, cellTextureHeight, BorderConstants::BORDER_UP);
 
-                cells[x][y].BorderBottomRight(cellTextureWight, cellTextureHeight, BORDER_BOTTOM_RIGHT);
+                cells[x][y].BorderBottomRight(cellTextureWight, cellTextureHeight, BorderConstants::BORDER_BOTTOM_RIGHT);
 
-                cells[x][y].BorderLeft(cellTextureWight, cellTextureHeight, BORDER_LEFT);
+                cells[x][y].BorderLeft(cellTextureWight, cellTextureHeight, BorderConstants::BORDER_LEFT);
 
                 xIndex = 2;
                 yIndex = 2;
             }
             else if (left == 0 && up == 0 && bottom == 1 && right == 0) {
-                cells[x][y].BorderUp(cellTextureWight, cellTextureHeight, BORDER_UP);
+                cells[x][y].BorderUp(cellTextureWight, cellTextureHeight, BorderConstants::BORDER_UP);
 
-                cells[x][y].BorderLeft(cellTextureWight, cellTextureHeight, BORDER_LEFT);
+                cells[x][y].BorderLeft(cellTextureWight, cellTextureHeight, BorderConstants::BORDER_LEFT);
 
-                cells[x][y].BorderRight(cellTextureWight, cellTextureHeight, BORDER_RIGHT);
+                cells[x][y].BorderRight(cellTextureWight, cellTextureHeight, BorderConstants::BORDER_RIGHT);
                 
                 xIndex = 3;
                 yIndex = 2;
             }
             else if (left == 1 && up == 0 && bottom == 0 && right == 1) {
-                cells[x][y].BorderUp(cellTextureWight, cellTextureHeight, BORDER_UP);
+                cells[x][y].BorderUp(cellTextureWight, cellTextureHeight, BorderConstants::BORDER_UP);
 
-                cells[x][y].BorderBottom(cellTextureWight, cellTextureHeight, BORDER_BOTTOM);
+                cells[x][y].BorderBottom(cellTextureWight, cellTextureHeight, BorderConstants::BORDER_BOTTOM);
 
                 xIndex = 0;
                 yIndex = 3;
             }
             else if (left == 1 && up == 0 && bottom == 0 && right == 0) {
-                cells[x][y].BorderUp(cellTextureWight, cellTextureHeight, BORDER_UP);
+                cells[x][y].BorderUp(cellTextureWight, cellTextureHeight, BorderConstants::BORDER_UP);
 
-                cells[x][y].BorderBottom(cellTextureWight, cellTextureHeight, BORDER_BOTTOM);
+                cells[x][y].BorderBottom(cellTextureWight, cellTextureHeight, BorderConstants::BORDER_BOTTOM);
 
-                cells[x][y].BorderRight(cellTextureWight, cellTextureHeight, BORDER_RIGHT);
+                cells[x][y].BorderRight(cellTextureWight, cellTextureHeight, BorderConstants::BORDER_RIGHT);
 
                 xIndex = 1;
                 yIndex = 3;
             }
             else if (left == 0 && up == 0 && bottom == 0 && right == 1) {
-                cells[x][y].BorderUp(cellTextureWight, cellTextureHeight, BORDER_UP);
+                cells[x][y].BorderUp(cellTextureWight, cellTextureHeight, BorderConstants::BORDER_UP);
 
-                cells[x][y].BorderBottom(cellTextureWight, cellTextureHeight, BORDER_BOTTOM);
+                cells[x][y].BorderBottom(cellTextureWight, cellTextureHeight, BorderConstants::BORDER_BOTTOM);
 
-                cells[x][y].BorderLeft(cellTextureWight, cellTextureHeight, BORDER_LEFT);
+                cells[x][y].BorderLeft(cellTextureWight, cellTextureHeight, BorderConstants::BORDER_LEFT);
                 xIndex = 2;
                 yIndex = 3;
             }
