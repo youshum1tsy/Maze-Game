@@ -6,7 +6,7 @@ class Player {
 public:
 	void Initialize();
 	void Load();
-	void Update(Cell** cells, float deltaTime);
+	void Update(Cell** cells, Cell startCell, Cell endCell, float deltaTime);
 	void Draw(sf::RenderWindow& window);
 
 private:

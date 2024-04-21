@@ -5,6 +5,8 @@ public:
 	Maze(int columns, int rows);
 	~Maze();
 	void GenerateMaze();
+	void GenerateStartRoom();
+	void GenerateEndRoom();
 
 	void Load();
 	void Update();
@@ -15,10 +17,15 @@ public:
 
 	Cell** cells;
 
-private:
+	Cell startCell;
+	Cell endCell;
 
+private:
 	sf::Texture cellTexture;
-	int columns = 4;
-	int rows = 4;
+	int cellTextureHeight = 96;
+	int cellTextureWight = 96;
+	int distanceBetweenTexture = 32;
+	int columns;
+	int rows;
 };
 

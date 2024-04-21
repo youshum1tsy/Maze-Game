@@ -126,11 +126,50 @@ void Maze::GenerateMaze() {
     }
 }
 
+void Maze::GenerateStartRoom() {
+    int xIndex = 4;
+    int yIndex = 1;
+
+    startCell.SetX(std::floor(columns / 2));
+    startCell.SetY(rows);
+
+    startCell.BorderBottom(cellTextureWight, cellTextureHeight, BorderConstants::BORDER_BOTTOM);
+    startCell.BorderLeft(cellTextureWight, cellTextureHeight, BorderConstants::BORDER_LEFT);
+    startCell.BorderRight(cellTextureWight, cellTextureHeight, BorderConstants::BORDER_RIGHT);
+
+    startCell.GetSprite().setTexture(cellTexture);
+    startCell.GetSprite().setTextureRect(sf::IntRect((cellTextureHeight + distanceBetweenTexture) * xIndex, (cellTextureHeight + distanceBetweenTexture) * yIndex, cellTextureWight, cellTextureHeight));
+    startCell.GetSprite().setPosition(cellTextureWight * columns / 2 - cellTextureWight / 2, cellTextureHeight * rows);
+}
+
+void Maze::GenerateEndRoom() {
+    int xIndex = 4;
+    int yIndex = 2;
+
+    endCell.SetX(std::floor(columns / 2));
+    endCell.SetY(-1);
+
+    endCell.BorderUp(cellTextureWight, cellTextureHeight, BorderConstants::BORDER_UP);
+    endCell.BorderLeft(cellTextureWight, cellTextureHeight, BorderConstants::BORDER_LEFT);
+    endCell.BorderRight(cellTextureWight, cellTextureHeight, BorderConstants::BORDER_RIGHT);
+
+    endCell.GetSprite().setTexture(cellTexture);
+    endCell.GetSprite().setTextureRect(sf::IntRect((cellTextureHeight + distanceBetweenTexture) * xIndex, (cellTextureHeight + distanceBetweenTexture) * yIndex, cellTextureWight, cellTextureHeight));
+    endCell.GetSprite().setPosition(cellTextureWight * columns / 2 - cellTextureWight / 2, cellTextureHeight * -1);
+}
+
 void Maze::Load() {
 
     int cellTextureHeight = 96;
     int cellTextureWight = 96;
     int distanceBetweenTexture = 32;
+
+    int startX = std::floor(columns / 2);
+    int startY = rows - 1;
+    int endX = std::floor(columns / 2);
+    int endY = 0;
+
+    std::cout << "wow " << endX << endY << std::endl;
 
     if (cellTexture.loadFromFile("../Assets/Maze/Stylesheet.png")) {
         std::cout << "loaded" << std::endl;
@@ -177,6 +216,14 @@ void Maze::Load() {
                     }
                 }
             }
+            
+            if (x == startX && y == startY) {
+                bottom = 1;
+            }
+            else if (x == endX && y == endY) {
+                up = 1;
+            }
+
 
             if (left == 1 && right == 1 && up == 1 && bottom == 1) {
                 cells[x][y].BorderUpLeft(cellTextureWight, cellTextureHeight, BorderConstants::BORDER_UP_LEFT);
@@ -350,5 +397,7 @@ void Maze::Draw(sf::RenderWindow& window) {
             window.draw(cells[x][y].GetSprite());
         }
     }
+    window.draw(startCell.GetSprite());
+    window.draw(endCell.GetSprite());
 }
 

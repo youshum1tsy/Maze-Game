@@ -36,18 +36,23 @@ std::vector<std::vector<int>> Cell::GetLinks()
 	return links;
 }
 
-size_t Cell::GetNumberLinks()
-{
+size_t Cell::GetNumberLinks() {
 	return links.size();
 }
 
-int Cell::GetX()
-{
+int Cell::GetX() {
 	return x;
 }
-int Cell::GetY()
-{
+int Cell::GetY() {
 	return y;
+}
+
+void Cell::SetX(int x) {
+	this->x = x;
+}
+
+void Cell::SetY(int y) {
+	this->y = y;
 }
 
 sf::Sprite& Cell::GetSprite()

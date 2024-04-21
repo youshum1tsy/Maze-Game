@@ -7,11 +7,12 @@
 #include "Player.h"
 
 int main() {
-    int columns = 20;
-    int rows = 20;
+    int columns = 7;
+    int rows = 7;
 
     Maze map(columns, rows);
     map.GenerateMaze();
+
 
     Player player;
     player.Initialize();
@@ -19,6 +20,10 @@ int main() {
     sf::RenderWindow window(sf::VideoMode(1920, 1080), "Maze-Game");
 
     map.Load();
+
+    map.GenerateStartRoom();
+    map.GenerateEndRoom();
+
     player.Load();
 
     sf::Clock clock;
@@ -34,7 +39,7 @@ int main() {
                 window.close();
         }
 
-        player.Update(map.cells, deltaTime);
+        player.Update(map.cells, map.startCell, map.endCell, deltaTime);
 
         window.clear(sf::Color::Black);
         map.Draw(window);

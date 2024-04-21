@@ -18,6 +18,9 @@ public:
 	int GetX();
 	int GetY();
 
+	void SetX(int x);
+	void SetY(int y);
+
 	sf::Sprite& GetSprite();
 	
 	void BorderUpLeft(int cellTextureWight, int cellTextureHeight, int direction);
