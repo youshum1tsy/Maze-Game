@@ -38,9 +38,9 @@ public:
 private:
 	std::map<int, int[2]> neighboursCords;
 	std::vector<int> directions;
+
 	int x;
 	int y;
-
 
 	sf::Sprite sprite;
 };

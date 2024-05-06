@@ -5,26 +5,41 @@
 #include "Cell.h"
 #include "Math.h"
 #include "Player.h"
+#include "Menu.h"
 
 int main() {
-    int columns = 7;
-    int rows = 7;
+    int columns = 31;
+    int rows = 31;
 
     Maze map(columns, rows);
     map.GenerateMaze();
 
-
-    Player player;
-    player.Initialize();
-
     sf::RenderWindow window(sf::VideoMode(1920, 1080), "Maze-Game");
 
-    map.Load();
+    Menu menu;
+    menu.Initialize();
+    menu.Load();
+    while (menu.GetIsMenu()) {
 
+        sf::Event event;
+        while (window.pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed)
+                window.close();
+        }
+
+        menu.Update(window);
+        menu.Draw(window);
+    }
+
+    Player player;
+    player.Initialize(columns, rows);
+    player.Load();
+
+    map.Load();
     map.GenerateStartRoom();
     map.GenerateEndRoom();
-
-    player.Load();
+    
 
     sf::Clock clock;
 
@@ -44,9 +59,8 @@ int main() {
         window.clear(sf::Color::Black);
         map.Draw(window);
         player.Draw(window);
-        
+
         window.display();
     }
-
     return 0;
 }

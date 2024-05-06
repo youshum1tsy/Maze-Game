@@ -31,8 +31,7 @@ void Cell::link(Cell& cell) {
 	cell.links[cell.links.size() - 1].push_back(this->GetY());
 }
 
-std::vector<std::vector<int>> Cell::GetLinks()
-{
+std::vector<std::vector<int>> Cell::GetLinks() {
 	return links;
 }
 
@@ -55,8 +54,7 @@ void Cell::SetY(int y) {
 	this->y = y;
 }
 
-sf::Sprite& Cell::GetSprite()
-{
+sf::Sprite& Cell::GetSprite() {
 	return sprite;
 }
 
