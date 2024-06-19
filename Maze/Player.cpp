@@ -5,30 +5,28 @@
 
 void Player::Initialize(int columns, int rows) {
 	playerSpeed = 0.25;
-    sprite.setPosition(sf::Vector2f(96 * columns / 2 - 12, 96 * rows + 96 / 2));
+    sprite.setPosition(sf::Vector2f(96 * columns / 2 - 12, 0));
+    //sprite.setPosition(sf::Vector2f(96 * columns / 2 - 12, 96 * rows + 96 / 2));
+
     cameraWidth = 1920;
     cameraHeight = 1080;
     camera.setCenter(sf::Vector2f(sprite.getPosition().x, sprite.getPosition().y));
     camera.setSize(cameraWidth, cameraHeight);
-    timerText.setCharacterSize(24);
-    timerText.setFillColor(sf::Color::Red);
-
 }
 
 void Player::Load() {
-    if (texture.loadFromFile("../Assets/Player/stylesheet.png")) {
-        std::cout << "player texture successful loaded";
-        sprite.setTexture(texture);
-        sprite.setTextureRect(sf::IntRect(0, 0, 24, 24));
-    }
-    else {
-        std::cout << "player texture error when loaded";
-    }
+    texture.loadFromFile("../Assets/Player/stylesheet.png");
+
+    sprite.setTexture(texture);
+    sprite.setTextureRect(sf::IntRect(0, 0, 24, 24));
+
     timerFont.loadFromFile("../Assets/Timer/font.ttf");
     timerText.setFont(timerFont);
+    timerText.setCharacterSize(48);
+    timerText.setFillColor(sf::Color::White);
 }
 
-void Player::Update(Cell** cells, Cell startCell, Cell endCell, float deltaTime) {
+void Player::Update(Cell** cells, Cell startCell, Cell endCell, float deltaTime, bool& end, std::string& timer, sf::RenderWindow& window) {
 
     int x = std::floor(sprite.getPosition().x / 96);
     int y = std::floor(sprite.getPosition().y / 96);
@@ -51,6 +49,11 @@ void Player::Update(Cell** cells, Cell startCell, Cell endCell, float deltaTime)
         moveLeft(endCell, deltaTime, position);
        
         moveRight(endCell, deltaTime, position);
+
+        end++;
+        timer = std::to_string(round(this->timer.getElapsedTime().asSeconds() * 100) / 100);
+        camera.setCenter(cameraWidth/2, cameraHeight/2);
+        window.setView(camera);
     }
     else {
         moveUp(cells[x][y], deltaTime, position);
@@ -60,7 +63,6 @@ void Player::Update(Cell** cells, Cell startCell, Cell endCell, float deltaTime)
         moveLeft(cells[x][y], deltaTime, position);
 
         moveRight(cells[x][y], deltaTime, position);
-
     }
 }
 

@@ -6,7 +6,7 @@ class Player {
 public:
 	void Initialize(int columns, int rows);
 	void Load();
-	void Update(Cell** cells, Cell startCell, Cell endCell, float deltaTime);
+	void Update(Cell** cells, Cell startCell, Cell endCell, float deltaTime, bool& end, std::string& timer, sf::RenderWindow& window);
 	void Draw(sf::RenderWindow& window);
 
 private:

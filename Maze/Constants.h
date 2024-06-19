@@ -21,5 +21,11 @@ namespace MenuConstants {
 	const int MAIN = 0;
 	const int PLAY = 1;
 	const int QUIT = 2;
+}
 
+namespace EndConstants {
+	const int RESULT = 0;
+	const int TRYAGAIN = 1;
+	const int LEADERBOARD = 2;
+	const int QUIT = 3;
 }

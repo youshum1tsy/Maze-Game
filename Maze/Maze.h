@@ -9,7 +9,6 @@ public:
 	void GenerateEndRoom();
 
 	void Load();
-	void Update();
 	void Draw(sf::RenderWindow& window);
 	
 	Cell* GetRandomCell();

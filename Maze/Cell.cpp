@@ -1,7 +1,5 @@
-#include "Cell.h"
-#include <iterator>
-#include <iterator>
 #include <ctime>
+#include "Cell.h"
 
 Cell::Cell() {
 }

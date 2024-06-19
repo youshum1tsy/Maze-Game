@@ -1,12 +1,52 @@
 #include "Math.h"
+bool DidRectCollision(sf::FloatRect rect1, sf::FloatRect rect2) {
+	bool result;
 
-bool DidRectCollision(sf::FloatRect rect1, sf::FloatRect rect2)
-{
-	if (rect1.left + rect1.width > rect2.left &&
-		rect2.left + rect2.width > rect1.left &&
-		rect1.top + rect1.height > rect2.top &&
-		rect2.top + rect2.height > rect1.top) {
-		return true;
+	__asm {
+		push eax;
+		push ebx;
+		push ecx;
+		push edx;
+
+		fld rect1.left;
+		fadd rect1.width;
+		fcomp rect2.left;
+		fnstsw ax;
+		sahf;
+		jbe no_collision;
+
+		fld rect2.left;
+		fadd rect2.width;
+		fcomp rect1.left;
+		fnstsw ax;
+		sahf;
+		jbe no_collision;
+
+		fld rect1.top;
+		fadd rect1.height;
+		fcomp rect2.top;
+		fnstsw ax;
+		sahf;
+		jbe no_collision;
+
+		fld rect2.top;
+		fadd rect2.height;
+		fcomp rect1.top;
+		fnstsw ax;
+		sahf;
+		jbe no_collision;
+
+		mov result, 1;
+		jmp end;
+
+	no_collision:
+		mov result, 0;
+
+	end:
+		pop edx;
+		pop ecx;
+		pop ebx;
+		pop eax;
 	}
-	return false;
+	return result;
 }

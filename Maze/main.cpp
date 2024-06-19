@@ -1,18 +1,15 @@
+#include <SFML/Graphics.hpp>
 #include <iostream>
 #include <random>
-#include <SFML/Graphics.hpp>
 #include "Maze.h"
 #include "Cell.h"
 #include "Math.h"
 #include "Player.h"
 #include "Menu.h"
+#include "End.h"
+#include "Start.h"
 
 int main() {
-    int columns = 31;
-    int rows = 31;
-
-    Maze map(columns, rows);
-    map.GenerateMaze();
 
     sf::RenderWindow window(sf::VideoMode(1920, 1080), "Maze-Game");
 
@@ -32,20 +29,13 @@ int main() {
         menu.Draw(window);
     }
 
-    Player player;
-    player.Initialize(columns, rows);
-    player.Load();
+    startgame(window);
 
-    map.Load();
-    map.GenerateStartRoom();
-    map.GenerateEndRoom();
-    
+    End end;
+    end.Initialize();
+    end.Load();
 
-    sf::Clock clock;
-
-    while (window.isOpen()) {
-        sf::Time deltaTimeTimer = clock.restart();
-        float deltaTime = deltaTimeTimer.asMicroseconds() / 1000.0;
+    while (end.GetIsMenu()) {
 
         sf::Event event;
         while (window.pollEvent(event))
@@ -53,14 +43,9 @@ int main() {
             if (event.type == sf::Event::Closed)
                 window.close();
         }
-
-        player.Update(map.cells, map.startCell, map.endCell, deltaTime);
-
-        window.clear(sf::Color::Black);
-        map.Draw(window);
-        player.Draw(window);
-
-        window.display();
+        end.Update(window);
+        end.Draw(window);
     }
+
     return 0;
 }

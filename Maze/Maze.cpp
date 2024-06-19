@@ -1,6 +1,6 @@
-#include "Maze.h"
 #include <ctime>
 #include <iostream>
+#include "Maze.h"
 #include "Constants.h"
 
 Maze::Maze(int columns, int rows) {
@@ -159,7 +159,6 @@ void Maze::GenerateEndRoom() {
 }
 
 void Maze::Load() {
-
     int cellTextureHeight = 96;
     int cellTextureWight = 96;
     int distanceBetweenTexture = 32;
@@ -169,15 +168,8 @@ void Maze::Load() {
     int endX = std::floor(columns / 2);
     int endY = 0;
 
-    std::cout << "wow " << endX << endY << std::endl;
-
-    if (cellTexture.loadFromFile("../Assets/Maze/Stylesheet.png")) {
-        std::cout << "loaded" << std::endl;
-    }
-    else {
-        std::cout << "Failed to loaded!" << std::endl;
-    }
-
+    cellTexture.loadFromFile("../Assets/Maze/Stylesheet.png");
+    
     for (size_t y = 0; y < rows; y++)
     {
         for (size_t x = 0; x < columns; x++)
@@ -223,7 +215,6 @@ void Maze::Load() {
             else if (x == endX && y == endY) {
                 up = 1;
             }
-
 
             if (left == 1 && right == 1 && up == 1 && bottom == 1) {
                 cells[x][y].BorderUpLeft(cellTextureWight, cellTextureHeight, BorderConstants::BORDER_UP_LEFT);
@@ -383,9 +374,6 @@ void Maze::Load() {
     }
 }
 
-void Maze::Update() {
-}
-
 void Maze::Draw(sf::RenderWindow& window) {
     for (size_t y = 0; y < rows; y++)
     {
@@ -400,4 +388,3 @@ void Maze::Draw(sf::RenderWindow& window) {
     window.draw(startCell.GetSprite());
     window.draw(endCell.GetSprite());
 }
-
